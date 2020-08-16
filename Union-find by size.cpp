@@ -14,22 +14,24 @@ int find(int s[],int n, int x)
         return-1;
     if(s[x]==-1)
         return x;
-    else return find(s,n,s[x]);
+    else return(s[x]=find(s,n,s[x]));
 }
 void union_size(int *s,int n,int root1,int root2)
 {
-    if((find(s,n,root1)==find(s,n,root2))&& find(s,n,root1)!=-1)
+    int t1=find(s,n,root1);
+    int t2=find(s,n,root2);
+    if((t1==t2)&& t1!=-1)
         return;
-    if(s[root2]<s[root1])
+    if(s[t2]<s[t1])
     {
-        s[root2]+=s[root1];
-        s[root1]=root2;
+        s[t2]+=s[t1];
+        s[t1]=t2;
         
     }
     else
     {
-        s[root1]+=s[root2];
-        s[root2]=root1;
+        s[t1]+=s[t2];
+        s[t2]=t1;
     }
 }
 
